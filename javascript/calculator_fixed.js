@@ -251,8 +251,8 @@ function calculateValue() {
             goldEl && goldEl.classList.contains('active') ? 20 :
             silverEl && silverEl.classList.contains('active') ? 5 : 1;
 
-    // Friend boost multipliers now map 0%,20%,40%,60%,80%,100% -> 1.0x..2.0x
-    const friendMultipliers = [1,1.2,1.4,1.6,1.8,2.0];
+    // Friend boost multipliers map 0%,10%,20%,30%,40%,50% -> 1.0x..1.5x
+    const friendMultipliers = [1,1.1,1.2,1.3,1.4,1.5];
         const friendMultiplier = friendMultipliers[sliderValue];
 
         // Original formula
@@ -290,13 +290,12 @@ function updateSliderLabel() {
     const label = document.getElementById('sliderValueLabel');
     const bar = document.getElementById('friendBoostBar');
     if (!slider || !label) return;
+    const percentages = [0,10,20,30,40,50];
     const idx = Math.max(0, Math.min(5, parseInt(slider.value) || 0));
-    // Display 0-100% while internally the multiplier steps remain 0-50% extra (1.0 -> 1.5)
-    const pct = (idx / 5) * 100; // 0,20,...100
-    label.textContent = pct.toFixed(0) + '%';
-    // Bar should represent progress from 0 to max slider value (fill 100% at 50% boost)
+    const pct = percentages[idx];
+    label.textContent = pct + '%';
     if (bar) {
-        const fill = (idx / 5) * 100; // 0..100
+        const fill = (idx / 5) * 100; // full bar at 50%
         bar.style.width = fill + '%';
     }
 }
@@ -341,14 +340,14 @@ function calculateWeightFromValue() {
         // Friend multiplier
         const sliderEl = document.getElementById('weightSlider');
         const sliderValue = sliderEl ? Math.max(0, Math.min(5, parseInt(sliderEl.value) || 0)) : 0;
-    const friendMultipliers = [1,1.2,1.4,1.6,1.8,2.0];
+    const friendMultipliers = [1,1.1,1.2,1.3,1.4,1.5];
         const friendMultiplier = friendMultipliers[sliderValue];
         // Plant amount
         const amountEl = document.getElementById('plantAmount');
         const plantAmount = amountEl ? Math.max(1, parseInt(amountEl.value) || 1) : 1;
         // Modifiers
         const modifierValues = {
-            shocked:100,frozen:10,wet:2,chilled:2,choc:2,moonlit:2,bloodlit:4,celestial:120,disco:125,zombified:25,plasma:5,voidtouched:135,pollinated:3,honeyglazed:5,dawnbound:150,heavenly:5,cooked:10,burnt:4,molten:25,meteoric:125,verdant:4,sundried:85,windstruck:2,alienlike:100,paradisal:100,twisted:5,galactic:120,aurora:90,drenched:5,cloudtouched:5,fried:8,sandy:3,amber:10,clay:5,ceramic:30,ancientamber:50,oldamber:20,friendbound:70,tempestous:12,infected:75,tranquil:20,chakra:15,toxic:12,radioactive:80,foxfire:90,corrupt:20,subzero:40,jackpot:15,blitzshock:50,touchdown:105,static:8,harmonisedfoxfire:190,harmonisedchakra:35,sliced:50,sauce:3,pasta:3,meatball:3,acidic:15,spaghetti:12,aromatic:15,oil:15,boil:15,junkshock:45,bloom:8,eclipsed:20,fortune:50,lightcycle:50,cyclonic:50,brainrot:100,rot:8,warped:75,gnomed:15,beanbound:100,gloom:30,maelstrom:100
+            shocked:100,frozen:10,wet:2,chilled:2,choc:2,moonlit:2,bloodlit:4,celestial:120,disco:125,zombified:25,plasma:5,voidtouched:135,pollinated:3,honeyglazed:5,dawnbound:150,heavenly:5,cooked:10,burnt:4,molten:25,meteoric:125,verdant:4,sundried:85,windstruck:2,alienlike:100,paradisal:100,twisted:5,galactic:120,aurora:90,drenched:5,cloudtouched:5,fried:8,sandy:3,amber:10,clay:5,ceramic:30,ancientamber:50,oldamber:20,friendbound:70,tempestous:12,infected:75,tranquil:20,chakra:15,toxic:12,radioactive:55,foxfire:90,corrupt:20,subzero:40,jackpot:15,blitzshock:50,touchdown:105,static:8,harmonisedfoxfire:190,harmonisedchakra:35,sliced:50,sauce:3,pasta:3,meatball:3,acidic:15,spaghetti:15,aromatic:15,oil:15,boil:15,junkshock:45,bloom:8,eclipsed:20,fortune:50,lightcycle:50,cyclonic:50,brainrot:100,rot:8,warped:75,gnomed:15,beanbound:100,gloom:30,maelstrom:100
         };
         let modifierSum = 0; let modifierCount = 0;
         Object.keys(modifierValues).forEach(id => {
