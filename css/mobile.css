@@ -1,0 +1,318 @@
+.category-wrapper {
+    height: 275px;
+    overflow-y: auto;
+}
+
+.fruit-button.active {
+    box-shadow: 0 0 10px 3px #bdfc9a;
+    border: 2px solid #bdfc9a;
+}
+
+.fruit-button span {
+    font-size: 9px;
+    color: #ccc;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.fruit-button img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin-bottom: 5px;
+    opacity: 0.5;
+    border: none;
+}
+
+.category-toggle-button {
+    flex: 0 0 calc(50% - 10px);
+    box-sizing: border-box;
+}
+
+.category-toggle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.input-block input[type="number"],
+.input-block input[type="range"] {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 6px 8px;
+}
+
+.input-group {
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0px;
+    margin: 0;
+    padding: 0;
+}
+
+.input-block {
+    min-width: auto;
+    width: 100%;
+    gap: 2px;
+}
+
+#sliderValueLabel {
+    margin: 2px 0 0 0;
+    font-size: 14px;
+}
+
+.result {
+    font-size: 36px;
+    margin-top: 5px;
+}
+
+button {
+    margin-top: 2px !important;
+}
+
+.form-ad-container {
+    margin-top: 40px !important;
+}
+
+#mainCalculator>.form-ad-container {
+    order: 9999;
+    /* push it to the end */
+}
+
+.section-title {
+    font-size: 24px;
+    margin-top: 5px;
+    margin-bottom: 6px;
+}
+
+.result {
+    font-size: 36px;
+}
+
+#layoutToggleBtn {
+    display: none;
+}
+
+.desktop-only-ad {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    @media (max-width: 500px) {}
+}
+
+.category-content {
+    display: none;
+}
+
+.category-content.active {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.fruit-button {
+    flex: 1 1 calc(33.33% - 10px);
+    max-width: calc(33.33% - 10px);
+    min-width: 100px;
+    box-sizing: border-box;
+}
+
+.top-controls {
+    position: static !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 8px;
+}
+
+.info-btn {
+    order: 2;
+    font-size: 16px;
+    background: #2e2e2e;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+#modifiers {
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+.modifier-button {
+    flex: 1 1 calc(30.00% - 10px);
+    max-width: calc(35.00% - 10px);
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 13px;
+    padding: 6px 4px;
+}
+
+#categoryButtons {
+    display: none !important;
+}
+
+#mobileCategorySelect {
+    display: block !important;
+}
+
+.fruit-button img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.fruit-button span {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 2px;
+    text-align: center;
+}
+
+#mobileCategorySelect {
+    background-color: #2e2e2e;
+    color: #e0e0e0;
+    border: 2px solid #444;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 16px;
+    box-shadow: 0 0 6px rgba(189, 252, 154, 0.2);
+    /* soft green glow */
+    appearance: none;
+    /* clean style across browsers */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23bdfc9a' d='M1.41 0L6 4.58 10.59 0 12 1.41 6 7.41 0 1.41z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+#mobileCategorySelect:focus {
+    outline: none;
+    border-color: #bdfc9a;
+    box-shadow: 0 0 8px 2px #bdfc9a;
+}
+
+@media (max-width: 900px) {
+    .category-toggle {
+        display: none !important;
+    }
+    .mobile-only-category {
+        display: block !important;
+    }
+    #petAgeWeightContainer {
+        height: auto;
+        /* Allow height to adjust based on content */
+        max-height: 100vh;
+        /* Limit the maximum height to the viewport height */
+        overflow-y: auto;
+        /* Enable scrolling */
+    }
+}
+
+@media (max-width: 899px) {
+    select#mobileCategorySelect {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+}
+
+.custom-mobile-dropdown {
+    display: block;
+    position: relative;
+    max-width: 100%;
+    margin: 10px auto;
+}
+
+#openMobileDropdownBtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #2e2e2e;
+    color: #eee;
+    font-size: 16px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#customDropdownContent {
+    display: none;
+    background: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 8px;
+    margin-top: 8px;
+    padding: 10px;
+    z-index: 999;
+}
+
+#customDropdownContent.show {
+    display: block;
+}
+
+.dropdown-columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.dropdown-column {
+    flex: 1;
+}
+
+.dropdown-column ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.dropdown-column li {
+    margin: 6px 0;
+    padding: 6px;
+    background-color: #2e2e2e;
+    border: 1px solid #555;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #bdfc9a;
+    text-align: center;
+}
+
+.dropdown-column li:hover {
+    background-color: #3a3a3a;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    /* Shift Pet Ability container down */
+    .category-content.active:has(#petAbilityButtons) {
+        margin-top: 20px;
+    }
+    /* Limit pet ability grid */
+    #petAbilityButtons {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        grid-auto-rows: 100px;
+        gap: 10px;
+        max-height: calc(100px * 2.5 + 20px);
+        /* ~2.5 rows */
+        overflow-y: auto;
+        padding-right: 8px;
+    }
+    #petAbilityButtons::after {
+        content: "⬇ Scroll for more pets ⬇";
+        display: block;
+        text-align: center;
+        font-size: 13px;
+        color: #aaa;
+        margin-top: 8px;
+    }
+}

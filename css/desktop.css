@@ -1,0 +1,67 @@
+.form-ad-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0;
+    text-align: left;
+    padding: 0;
+    align-self: flex-start;
+}
+
+.google-form {
+    flex: 2;
+    width: 100%;
+    min-width: 300px;
+    height: 650px;
+    border: none;
+    display: block;
+    margin: 0;
+}
+
+.desktop-ad {
+    flex: 1 !important;
+    min-width: 200px !important;
+    max-width: 300px !important;
+    margin-left: 50px !important;
+    min-height: 250px;
+}
+
+#layoutContainer.layout-side-by-side #sideBySideAd {
+    display: block !important;
+}
+
+#all {
+    margin-bottom: 120px;
+}
+
+.category-wrapper {
+    max-height: 40vh;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+#layoutContainer.layout-side-by-side .category-wrapper {
+    max-height: unset;
+    overflow: visible;
+    padding-right: 0;
+}
+
+.layout-side-by-side .category-content.active {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    grid-auto-rows: 110px;
+    /* each row fixed height */
+    gap: 10px;
+}
+
+#layoutContainer.layout-side-by-side .left-panel {
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    padding-right: 10px;
+    box-sizing: border-box;
+}

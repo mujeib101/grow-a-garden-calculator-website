@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Most Accurate, regularly updated fanmade Roblox Grow a garden value calculator with mutations,with Pet weight,even Pet ability calculations!" name="description" />
+    <link href="images/icon.png" rel="icon" type="image/png" />
+    <link href="css/general.css" rel="stylesheet" />
+    <link href="css/desktop.css" media="(min-width: 900px)" rel="stylesheet" />
+    <link href="css/mobile.css" media="(max-width: 899px)" rel="stylesheet" />
+    <script src="https://dn0qt3r0xannq.cloudfront.net/growagardencalculator-EqTQ48HHP6/growagardencalculator-longform/prebid-load.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3ZTY553FKN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-3ZTY553FKN');
+    </script>
+    <title>Grow a Garden Calculator</title>
+</head>
+<body>
+
+    <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+        <h1 style="font-size: 56px; margin: 0; display: flex; align-items: center; gap: 10px;">
+            <img alt="Logo" src="images/icon.png" style="width: 48px; height: 48px;" /> Grow a Garden Calculator
+        </h1>
+    </div>
+    <div class="disclaimer-instructions-bar">
+
+        <div class="disclaimer-section">
+            <strong>Disclaimer:</strong><br/> This is a <strong>fanmade</strong> website and not officially affiliated with Grow a Garden.<br/> All data is gathered through in-game testing only — no game code is used.<br/> For feedback or corrections,
+            message <strong>@mujeib.101</strong> on Discord or use the <a href="/contact" style="color: #76c7ff; text-decoration: underline;">contact page</a>.
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="instructions-section">
+            <strong>How to use:</strong><br/> Select a plant from the category list → Apply desired mutations → Enter weight.<br/> Don’t know the weight? Use the “<em>Value to Weight</em>” button to estimate it!<br/> Pet XP and hatch tools are available
+            in their own categories too.<br/>
+            <p style="color: red; font-size: 16px">Also has pet abilities now!!!</p>
+        </div>
+    </div>
+    <div style="margin-bottom: 15px ; margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+        <a href="https://discord.gg/growagarden" target="_blank" rel="noopener noreferrer" class="btn">
+    Join the official GAG Discord
+  </a>
+        <a href="https://discord.gg/WPyCztYAJv" target="_blank" rel="noopener noreferrer" class="btn">
+    Join the Calculator Support Discord
+  </a>
+    </div>
+    </header>
+
+    <style>
+        .btn {
+            background: #2e2e2e;
+            color: #e0e0e0;
+            border: 1px solid #444;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn:hover {
+            background: #3a3a3a;
+            border-color: #bdfc9a;
+            box-shadow: 0 0 10px 3px #bdfc9a;
+            color: #bdfc9a;
+        }
+    </style>
+    </div>
+
+    <div class="top-controls">
+        <button id="layoutToggleBtn" style="info-btn">Switch to side-by-side display</button></div>
+    </div>
+    <div class="container layout-default" id="layoutContainer">
+        <div class="left-panel" id="plantPanel">
+            <div class="section-title">Choose a Category and the plant or pet calculation you want</div><input id="plantSearch" placeholder="Search for a plant..." style="padding: 8px; font-size: 16px; width: 100%; max-width: 400px; margin-bottom: 10px; border-radius: 6px; background: #2e2e2e; color: #e0e0e0; border: 1px solid #444;"
+                type="text" />
+            <div class="category-toggle" id="categoryButtons"></div>
+            <div class="mobile-only-category" style="display: none; margin-bottom: 12px;">
+
+                <div id="mobileDropdownWrapper" class="custom-mobile-dropdown">
+                    <button id="openMobileDropdownBtn">Select Category ▼</button>
+                    <div id="customDropdownContent" class="hidden">
+                        <div class="dropdown-columns">
+                            <div class="dropdown-column">
+                                <strong>🌱 Plants</strong>
+                                <ul>
+                                    <li data-category="All">All</li>
+                                    <li data-category="BaseValue">BaseValue</li>
+                                    <li data-category="Seed Shop">Seed Shop</li>
+                                    <li data-category="Exotic Seed Pack">Exotic Seed Pack</li>
+                                    <li data-category="Normal Seed Pack">Normal Seed Pack</li>
+                                    <li data-category="Easter Event">Easter Event</li>
+                                    <li data-category="Night Event">Night Event</li>
+                                    <li data-category="Bee Event">Bee Event</li>
+                                    <li data-category="Summer Event">Summer Event</li>
+                                    <li data-category="Prehistoric Event">Prehistoric Event</li>
+                                    <li data-category="Zen Update">Zen Update</li>
+                                    <li data-category="Cooking Event">Cooking Event</li>
+                                    <li data-category="Beanstalk Event">Beanstalk Event</li>
+
+                                </ul>
+                            </div>
+                            <div class="dropdown-column">
+                                <strong>🐾 Pets</strong>
+                                <ul>
+                                    <li data-category="Pet XP">Pet XP</li>
+                                    <li data-category="Egg Hatch Speed">Egg Hatch Speed</li>
+                                    <li data-category="Pet Weight by Age">Pet Weight by Age</li>
+                                    <li data-category="Pet Ability">Pet Ability</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-wrapper">
+                <div id="categoryContents"></div>
+            </div>
+        </div>
+        <div class="right-panel" id="calculatorPanel">
+            <div id="mainCalculator">
+
+
+                <div class="section-title" style="margin-top: 36px; padding-bottom: 4px; margin: 0;">Modifiers(FOXFIRE AND CORRUPTED FOXFIRE ARE THE SAME MUTATIONS)
+                    <button id="showMutationInfoBtn" style="margin-left: 10px; margin-bottom: 10px;">
+  How to get each mutation?
+</button>
+                    <button id="sortMutationsBtn" style="margin-left: 10px; margin-bottom: 10px;">
+Sort by Value (Descending)</button>
+                    <button id="sortAlphabeticalBtn" style="margin-left: 10px; margin-bottom: 10px;">
+Sort Alphabetically
+</button>
+                    <button id="toggleAdminMutationsBtn" style="margin-left: 10px; margin-bottom: 10px;">
+  Hide Admin Mutations
+</button>
+                    <br>
+                    <input id="mutationSearch" placeholder="Search for a mutation..." style="padding: 6px; font-size: 14px; width: 100%; max-width: 400px; margin-bottom: 10px; border-radius: 6px; background: #2e2e2e; color: #e0e0e0; border: 1px solid #444;" type="text" />
+                </div>
+                <div class="row" id="modifiers"></div>
+
+                <div id="selectedModifiersFormulaExplain" style="margin-top: 4px; font-size: 14px; color: #ccc;">(Rainbow/Gold) × (1 + Sum of Modifiers − Number of Modifiers)</div>
+                <div id="selectedModifiersDisplay" style="margin-top: 10px; font-size: 16px; color: #bdfc9a;"></div>
+                <button onclick="clearMutations()" style="margin-top: 20px;">Clear Mutations</button>
+                <button onclick="activateMaxMutations()" style="margin-top: 20px; margin-left: 10px;">Max Mutations</button>
+                <h1 style="text-align: left; font-size: 24px; margin-top: 10px;">Input weight:</h1>
+
+                <div class="input-group">
+                    <div class="input-block small">
+                        <label for="weight">Weight (kg):</label>
+                        <input id="weight" max="100000" min="0" step="0.01" type="number" value="1.00" />
+                    </div>
+                    <div class="input-block small">
+                        <label for="plantAmount">Amount of plants:</label>
+                        <input id="plantAmount" max="200" min="1" type="number" value="1" />
+                    </div>
+                    <div class="input-block large">
+                        <label for="weightSlider">Friend Boost:</label>
+                        <input id="weightSlider" max="5" min="0" oninput="updateSliderLabel(); debouncedCalculateValue()" step="1" type="range" value="0" />
+                        <span id="sliderValueLabel">0%</span>
+                        <div style="width: 100%; background: #222; height: 18px; border-radius: 8px; margin-top: 8px;">
+                            <div id="friendBoostBar" style="height: 100%; width: 0%; background: linear-gradient(90deg,#76c7ff,#2e2e2e); border-radius: 8px; transition: width 0.3s;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="50"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="mutationBreakdown" style="margin-top: 10px; font-size: 18px; color: #bdfc9a;"></div>
+                <div class="result" id="value">$0</div>
+                <!-- Removed legacy add-to-list feature & finalValueDisplay for cleanup -->
+                <div id="plantAmountDisplay" style="display:none"></div>
+                <button id="toggleValueModeBtn" style="margin-top: 20px; margin-left: 10px;">Toggle Value to Weight Mode</button>
+
+                <div id="valueToWeightBox" style="margin-top: 20px; display: none;">
+                    <div class="input-block small">
+                        <label for="valueInput" style="font-size: 16px;"><strong>Input Value(SELECT MUTATIONS ABOVE) ($):</strong></label>
+                        <input type="text" id="valueInput" placeholder="Enter value (e.g. 1,000,000)" style="width: 200px; height: 40px; font-size: 16px; padding: 5px 10px;">
+                    </div>
+                    <button id="updateWeightBtn">Update</button>
+                    <div class="result" id="weightFromValue">≈0 kg</div>
+
+
+                </div>
+                <div class="ad-slot-wrapper" id="adContainerWrapper"></div>
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const isMobile = window.innerWidth < 900;
+            const mobileSelect = document.getElementById('mobileCategorySelect');
+            const desktopButtons = document.querySelectorAll('.category-toggle-button');
+
+            if (!isMobile || !mobileSelect) return;
+
+            // Hide desktop buttons
+            document.querySelector('.category-toggle').style.display = 'none';
+            // Show mobile dropdown
+            mobileSelect.parentElement.style.display = 'block';
+
+            // Populate dropdown with all category buttons
+            desktopButtons.forEach(btn => {
+                const option = document.createElement('option');
+                option.value = btn.textContent.trim();
+                option.textContent = btn.textContent.trim();
+                mobileSelect.appendChild(option);
+            });
+
+            // Handle selection
+            mobileSelect.addEventListener('change', (e) => {
+                const selected = e.target.value;
+
+                // Trigger click on the matching button (triggers all existing behavior)
+                desktopButtons.forEach(btn => {
+                    if (btn.textContent.trim() === selected) {
+                        btn.click();
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const openBtn = document.getElementById('openMobileDropdownBtn');
+            const dropdown = document.getElementById('customDropdownContent');
+
+            openBtn.addEventListener('click', () => {
+                dropdown.classList.toggle('show');
+            });
+
+            // Handle category selection
+            dropdown.querySelectorAll('li[data-category]').forEach(item => {
+                item.addEventListener('click', () => {
+                    const selected = item.getAttribute('data-category');
+                    openBtn.textContent = `Selected: ${selected}`;
+                    dropdown.classList.remove('show');
+
+                    // Trigger existing logic
+                    document.querySelectorAll('.category-toggle-button').forEach(btn => {
+                        if (btn.textContent.trim() === selected) {
+                            btn.click();
+                        }
+                    });
+                });
+            });
+
+            // Optional: close dropdown if clicking outside
+            document.addEventListener('click', e => {
+                if (!document.getElementById('mobileDropdownWrapper').contains(e.target)) {
+                    dropdown.classList.remove('show');
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const openBtn = document.getElementById('openContributorsModal');
+            const closeBtn = document.getElementById('closeContributorsModal');
+            const modal = document.getElementById('contributorsModal');
+            const overlay = document.getElementById('contributorsOverlay');
+
+            openBtn.addEventListener('click', () => {
+                modal.style.display = 'block';
+                overlay.style.display = 'block';
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+
+            overlay.addEventListener('click', () => {
+                modal.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+        });
+    </script>
+
+    <script src="javascript/calculator_fixed.js"></script>
+    <script>
+        const modifierDescriptions = {
+            rainbow: "50x",
+            gold: "20x",
+            silver: "5x",
+            shocked: "100x",
+            frozen: "10x",
+            wet: "2x",
+            chilled: "2x",
+            choc: "2x",
+            moonlit: "2x",
+            bloodlit: "4x",
+            celestial: "120x",
+            disco: "125x",
+            zombified: "25x",
+            plasma: "5x",
+            voidtouched: "135x",
+            pollinated: "3x",
+            honeyglazed: "5x",
+            dawnbound: "150x",
+            heavenly: "5x",
+            cooked: "10x",
+            burnt: "4x",
+            molten: "25x",
+            meteoric: "125x",
+            windstruck: "2x",
+            verdant: "4x",
+            paradisal: "100x",
+            alienlike: "100x",
+            sundried: "85x",
+            twisted: "5x",
+            galactic: "120x",
+            aurora: "90x",
+            cloudtouched: "5x",
+            drenched: "5x",
+            fried: "8x",
+            sandy: "3x",
+            amber: "10x",
+            clay: "5x",
+            ceramic: "30x",
+            ancientamber: "50x",
+            oldamber: "20x",
+            friendbound: "70x",
+            tempestous: "12x",
+            infected: "75x",
+            tranquil: "20x",
+            chakra: "15x",
+            radioactive: "55x",
+            foxfire: "90x",
+            harmonisedfoxfire: "190x",
+            corrupt: "20x",
+            jackpot: "15x",
+            subzero: "40x",
+            blitzshock: "50x",
+            touchdown: "105x",
+            static: "8x",
+            harmonisedchakra: "35x",
+            sliced: "50x",
+            sauce: "3x",
+            pasta: "3x",
+            meatball: "3x",
+            acidic: "15x",
+            spaghetti: "15x",
+            aromatic: "15x",
+            oil: "15x",
+            boil: "15x",
+            junkshock: "45x",
+            bloom: "8x",
+            eclipsed: "20x",
+            fortune: "50x",
+            lightcycle: "50x",
+            cyclonic: "50x",
+            brainrot: "100x",
+            rot: "8x",
+            warped: "75x",
+            gnomed: "15x",
+            beanbound: "100x",
+            gloom: "30x",
+            maelstrom: "100x"
+
+
+        };
+        const modifiers = ['rainbow', 'gold', 'silver', 'shocked', 'frozen', 'wet',
+            'chilled', 'choc', 'moonlit', 'bloodlit', 'celestial', 'disco', 'zombified',
+            'plasma', 'voidtouched', 'pollinated', 'honeyglazed', 'dawnbound',
+            'heavenly', 'cooked', 'burnt', 'molten', 'meteoric', 'windstruck',
+            'alienlike', 'sundried', 'verdant', 'paradisal', 'twisted', 'galactic',
+            'aurora', 'cloudtouched', 'drenched', 'fried', 'amber', 'oldamber', 'ancientamber', 'sandy', 'clay',
+            'ceramic', 'friendbound', 'infected', 'tranquil', 'corrupt', 'chakra', 'harmonisedchakra', 'foxfire',
+            'harmonisedfoxfire', 'radioactive',
+            'jackpot', 'subzero', 'blitzshock', 'touchdown', 'static', 'sliced', 'sauce', 'pasta', 'meatball', 'spaghetti', 'acidic',
+            'aromatic', 'oil', 'boil', 'junkshock', 'rot', 'bloom', 'gloom', 'eclipsed', 'fortune', 'lightcycle', 'brainrot',
+            'warped', 'gnomed', 'beanbound', 'tempestous', 'cyclonic', 'maelstrom'
+        ];
+
+        const allFruits = [
+            'carrot', 'strawberry', 'blueberry', 'tomato', 'cauliflower', 'watermelon', 'rafflesia',
+            'greenapple', 'avocado', 'banana', 'pineapple', 'kiwi', 'bellpepper', 'pricklypear',
+            'loquat', 'feijoa', 'pitcherplant',
+            'orangetulip', 'corn', 'daffodil',
+            'pumpkin', 'apple', 'bamboo', 'coconut', 'cactus', 'dragonfruit',
+            'mango', 'grape', 'mushroom', 'pepper', 'cacao', 'beanstalk', 'emberlily', 'sugarapple', 'burningbud', 'giantpinecone', 'elderstrawberry', 'romanesco', 'papaya',
+            'passionfruit', 'soulfruit', 'cursedfruit', 'raspberry', 'peach',
+            'chocolatecarrot', 'redlolipop', 'candysunflower', 'candyblossom', 'easteregg',
+            'cranberry', 'durian', 'eggplant', 'lotus', 'venusflytrap', 'nightshade', 'mint', 'glowshroom', 'moonmelon',
+            'starfruit', 'moonflower', 'bloodbanana', 'moonglow', 'moonblossom', 'celestiberry', 'moonmango',
+            'hive', 'nectarine', 'rose', 'foxglove', 'purpledahlia', 'pinklily', 'lilac', 'sunflower', 'lavender', 'nectarshade',
+            'manuka', 'dandelion', 'lumira', 'honeysuckle', 'beebalm', 'nectarthorn', 'suncoil', 'crocus', 'succulent',
+            'violetcorn', 'bendboo', 'cocovine', 'dragonpepper', 'wildcarrot', 'pear', 'cantaloupe', 'parasolflower',
+            'rosydelight', 'elephantears',
+            'peacelily', 'delphinium', 'travelersfruit', 'lilyofthevalley', 'aloevera', 'guanabana',
+            'libertylily', 'fireworkflower', 'boneblossom', 'stonebite', 'paradisepetal', 'horneddinoshroom', 'boneboo',
+            'fireflyfern', 'fossilight', 'horsetail', 'amberspine', 'grandvolcania', 'lingonberry',
+            'monoblooma', 'spikedmango', 'taroflower', 'softsunshine', 'serenity', 'zenflare',
+            'zenrocks', 'hinomai', 'mapleapple', 'dezen', 'luckybamboo', 'sakurabush', 'tranquilbloom',
+            'enkaku', 'fruitball', 'twistedtangle', 'veinpetal', 'onion', 'artichoke', 'tacofern', 'sugarglaze', 'jalapeno',
+            'crownmelon',
+            'tallasparagus', 'grandtomato', 'rhubarb', 'springonion', 'pricklefruit', 'bittermelon',
+            'badlandpepper', 'kingcabbage', 'butternutsquash',
+            'mandrake', 'mangosteen', 'poseidonplant', 'flaredaisy', 'gleamroot', 'canarymelon', 'duskpuff',
+            'goldenegg', 'amberheart', 'princessthorn', 'flaremelon', 'crownofthorn', 'callalily', 'glowpod', 'willowberry',
+            'cyclamen'
+        ];
+
+        // Initialize selectedPlant variable
+        let selectedPlant = null;
+
+        const allBasevalue = [
+            'goldenegg', 'boneblossom', 'parasolflower', 'sunflower', 'bendboo', 'fireworkflower', 'zenrocks',
+            'taroflower', 'honeysuckle', 'dragonpepper', 'fossilight', 'lumira', 'venusflytrap',
+            'candysunflower', 'suncoil', 'hinomai', 'elephantears', 'purpledahlia', 'fireflyfern',
+            'giantpinecone', 'grandvolcania', 'guanabana', 'burningbud', 'rosydelight', 'spikedmango',
+            'pinklily', 'aloevera', 'mapleapple', 'emberlily', 'amberspine', 'moonmango', 'redlolipop',
+            'nectarshade', 'dandelion', 'violetcorn', 'lilyofthevalley', 'sugarapple', 'softsunshine',
+            'nectarine', 'lilac', 'lingonberry', 'serenity', 'cantaloupe', 'nectarthorn', 'crocus',
+            'libertylily', 'horsetail', 'succulent', 'wildcarrot', 'paradisepetal', 'zenflare', 'delphinium',
+            'monoblooma', 'moonglow', 'foxglove', 'pear', 'peacelily', 'moonmelon', 'beebalm', 'lotus',
+            'cursedfruit', 'starfruit', 'feijoa', 'cacao', 'chocolatecarrot', 'celestiberry', 'moonflower',
+            'pepper', 'loquat', 'grape', 'soulfruit', 'eggplant', 'pricklypear', 'durian', 'mango',
+            'bloodbanana', 'bellpepper', 'mint', 'rose', 'dragonfruit', 'bamboo', 'passionfruit', 'nightshade',
+            'rafflesia', 'pumpkin', 'cactus', 'watermelon', 'kiwi', 'easteregg', 'cranberry', 'pineapple',
+            'banana', 'daffodil', 'papaya', 'orangetulip', 'glowshroom', 'peach', 'apple', 'avocado',
+            'raspberry', 'cauliflower', 'corn', 'tomato', 'carrot', 'blueberry', 'strawberry'
+        ];
+
+        const categories = {
+            "All": allFruits,
+            "BaseValue": allBasevalue,
+            "Seed Shop": ['carrot', 'strawberry', 'blueberry', 'orangetulip', 'tomato', 'corn',
+                'daffodil', 'watermelon', 'pumpkin', 'apple', 'bamboo', 'coconut', 'cactus', 'dragonfruit',
+                'mango', 'grape', 'mushroom', 'pepper', 'cacao', 'beanstalk', 'emberlily', 'sugarapple',
+                'burningbud', 'giantpinecone', 'elderstrawberry', 'romanesco'
+            ],
+            "Exotic Seed Pack": ['papaya', 'banana', 'passionfruit', 'soulfruit', 'cursedfruit'],
+            "Normal Seed Pack": ['raspberry', 'pear', 'peach', 'pineapple'],
+            "Easter Event": ['chocolatecarrot', 'redlolipop', 'candysunflower', 'candyblossom', 'easteregg'],
+            "Event Seed Pack": ['cranberry', 'durian', 'eggplant', 'lotus', 'venusflytrap'],
+            "Night Event": ['nightshade', 'mint', 'glowshroom', 'moonmelon', 'starfruit', 'moonflower',
+                'bloodbanana', 'moonglow', 'moonblossom', 'celestiberry', 'moonmango'
+            ],
+            "Bee Event": ['hive', 'nectarine', 'rose', 'foxglove', 'purpledahlia', 'pinklily', 'lilac', 'sunflower',
+                'lavender', 'nectarshade', 'manuka', 'dandelion', 'lumira', 'honeysuckle',
+                'beebalm', 'nectarthorn', 'suncoil', 'crocus', 'succulent', 'violetcorn', 'bendboo', 'cocovine', 'dragonpepper'
+            ],
+            "Summer Event": ['wildcarrot', 'pear', 'cantaloupe', 'parasolflower', 'rosydelight', 'elephantears',
+                'peacelily', 'delphinium', 'travelersfruit', 'lilyofthevalley', 'aloevera', 'guanabana', 'feijoa', 'loquat',
+                'pricklypear', 'pitcherplant', 'bellpepper', 'rafflesia'
+            ],
+            "Prehistoric Event": ['boneblossom', 'stonebite', 'paradisepetal', 'horneddinoshroom', 'boneboo',
+                'fireflyfern', 'fossilight', 'horsetail', 'amberspine', 'grandvolcania', 'lingonberry'
+            ],
+            "Zen Update": ['monoblooma', 'spikedmango', 'taroflower', 'softsunshine', 'serenity', 'zenflare',
+                'zenrocks', 'hinomai', 'mapleapple', 'dezen', 'luckybamboo', 'tranquilbloom',
+                'enkaku', 'fruitball', 'sakurabush'
+            ],
+            "Cooking Update": ['twistedtangle', 'veinpetal', 'onion', 'artichoke', 'tacofern', 'sugarglaze', 'jalapeno',
+                'crownmelon', 'tallasparagus', 'grandtomato', 'rhubarb', 'springonion', 'pricklefruit', 'bittermelon',
+                'badlandpepper', 'kingcabbage', 'butternutsquash'
+            ],
+            "Beanstalk Event": ['mandrake', 'mangosteen', 'poseidonplant', 'flaredaisy', 'gleamroot', 'canarymelon', 'duskpuff',
+                'goldenegg', 'amberheart', 'princessthorn', 'flaremelon', 'crownofthorn', 'callalily', 'glowpod', 'willowberry',
+                'cyclamen'
+            ]
+        };
+
+        const modifierContainer = document.getElementById('modifiers');
+
+        modifiers.forEach(id => {
+            const button = document.createElement('button');
+            button.id = id;
+            button.className = 'modifier-button';
+            const name = id.charAt(0).toUpperCase() + id.slice(1);
+            const multiplier = modifierDescriptions[id] || '';
+            button.textContent = `${name} (${multiplier})`;
+            button.onclick = function() {
+                toggleModifier(id);
+            };
+            button.title = modifierDescriptions[id] || id;
+            modifierContainer.appendChild(button);
+        });
+
+        document.getElementById('mutationSearch').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const allMutationButtons = document.querySelectorAll('#modifiers .modifier-button');
+
+            allMutationButtons.forEach(btn => {
+                const name = btn.textContent.toLowerCase();
+                btn.style.display = name.includes(query) ? 'inline-block' : 'none';
+            });
+        });
+
+        function activateMaxMutations() {
+            const excluded = ['gold', 'silver', 'wet', 'chilled', 'drenched', 'burnt', 'verdant', 'amber', 'oldamber',
+                'clay', 'sundried', 'twisted', 'chakra', 'foxfire', 'pasta', 'meatball', 'drenched',
+                'sauce', 'fried', 'burnt', 'cooked', 'beanbound', 'bloom', 'rot', 'tempestous', 'cyclonic'
+            ];
+            const adminMutations = [
+                "plasma", "voidtouched", "heavenly", "molten", "meteoric",
+                "alienlike", "galactic", "fried", "infected", "radioactive",
+                "jackpot", "subzero", "blitzshock", "touchdown", "oil", "boil",
+                "junkshock", "lightcycle"
+            ];
+
+            modifiers.forEach(id => {
+                const btn = document.getElementById(id);
+                if (!btn) return;
+
+                const isAdmin = adminMutations.includes(id);
+                if (!excluded.includes(id) &&
+                    (!adminHidden || !isAdmin)
+                ) {
+                    if (!btn.classList.contains("disabled")) {
+                        btn.classList.add("active", id);
+                    }
+                }
+            });
+
+            modifiers.forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn.classList.contains("active")) {
+                    // Disable all conflicting buttons for the active mutation
+                    if (conflictGroups[id]) {
+                        conflictGroups[id].forEach(conflictId => {
+                            const conflictBtn = document.getElementById(conflictId);
+                            if (conflictBtn) {
+                                conflictBtn.classList.add("disabled");
+                                conflictBtn.disabled = true; // Disable button
+                            }
+                        });
+                    }
+                }
+            });
+
+            const frozenBtn = document.getElementById("frozen");
+            if (frozenBtn) {
+                frozenBtn.classList.add("active", "frozen");
+                frozenBtn.classList.remove("disabled");
+            }
+
+            ["wet", "chilled"].forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) {
+                    btn.classList.remove("active");
+                    btn.classList.add("disabled");
+                }
+            });
+
+            debouncedCalculateValue();
+            updateSelectedModifiersDisplay();
+        }
+        const conflictGroups = {
+            burnt: ["cooked", "ceramic"],
+            cooked: ["burnt", "ceramic"],
+            fried: ["cooked", "ceramic"],
+            gold: ["rainbow", "silver"],
+            rainbow: ["gold", "silver"],
+            silver: ["gold", "rainbow"],
+            amber: ["ancientamber", "oldamber"],
+            ancientamber: ["amber", "oldamber"],
+            oldamber: ["amber", "ancientamber"],
+            clay: ["ceramic", "sandy"],
+            ceramic: ["clay", "fried", "burnt", "cooked"],
+            sandy: ["clay", "wet", "drenched"],
+            paradisal: ["sundried", "verdant"],
+            sundried: ["paradisal", "verdant"],
+            verdant: ["sundried", "paradisal"],
+            twisted: ["windstruck", "tempestous", "cylonic", "maelstrom"],
+            windstruck: ["tempestous", "twisted", "cyclonic"],
+            tempestous: ["windstruck", "twisted", "cyclonic", "maelstrom"],
+            cylonic: ["twisted", "windstruck", "tempestous", "maelstrom"],
+            maelstrom: ["twisted", "tempestous", "cyclonic"],
+            chakra: ["harmonisedchakra"],
+            harmonisedchakra: ["chakra"],
+            foxfire: ["harmonisedfoxfire"],
+            harmonisedfoxfire: ["foxfire"],
+            sauce: ["spaghetti"],
+            meatball: ["spaghetti"],
+            pasta: ["spaghetti"],
+            spaghetti: ["pasta", "meatball", "sauce"],
+            gloom: ["rot", "bloom"],
+            bloom: ["rot", "gloom"],
+            rot: ["gloom", "bloom"]
+        };
+
+        function toggleModifier(id) {
+
+
+
+            const btn = document.getElementById(id);
+            if (btn.classList.contains("disabled")) return;
+
+            const isActive = btn.classList.contains("active");
+
+
+
+            if (!isActive && conflictGroups[id]) {
+                conflictGroups[id].forEach(conflictId => {
+                    const conflictBtn = document.getElementById(conflictId);
+                    if (conflictBtn && !conflictBtn.classList.contains("disabled")) {
+                        conflictBtn.classList.add("disabled");
+                        conflictBtn.disabled = true; // Disable button
+                    }
+                });
+            } else if (isActive) {
+                // Re-enable conflicting buttons if this mutation is being deactivated
+                if (conflictGroups[id]) {
+                    conflictGroups[id].forEach(conflictId => {
+                        const conflictBtn = document.getElementById(conflictId);
+                        if (conflictBtn) {
+                            conflictBtn.classList.remove("disabled");
+                            conflictBtn.disabled = false; // Re-enable button
+                        }
+                    });
+                }
+            }
+
+            if (!isActive) {
+                btn.classList.add("active", id); // Activate clicked mutation
+            } else {
+                btn.classList.remove("active", id); // Deactivate clicked mutation
+            }
+
+
+            const isPastaActive = document.getElementById("pasta").classList.contains("active");
+            const isSauceActive = document.getElementById("sauce").classList.contains("active");
+            const isMeatballActive = document.getElementById("meatball").classList.contains("active");
+
+            // If two are selected and the third is clicked, deselect all and activate spaghetti
+            if (
+                (isPastaActive && isSauceActive && !isMeatballActive && id === "meatball") ||
+                (isSauceActive && isMeatballActive && !isPastaActive && id === "pasta") ||
+                (isMeatballActive && isPastaActive && !isSauceActive && id === "sauce")
+            ) {
+
+                ["pasta", "sauce", "meatball"].forEach(mod => {
+                    document.getElementById(mod).classList.remove("active");
+                });
+
+                document.getElementById("spaghetti").classList.add("active");
+                return;
+            }
+
+
+            const wetGroup = ["wet", "chilled", "drenched", "frozen"];
+            const isWetGroup = wetGroup.includes(id);
+
+            // Enforce exclusivity within the wetGroup
+            if (isWetGroup) {
+                wetGroup.forEach(mid => {
+                    const otherBtn = document.getElementById(mid);
+                    if (mid !== id) {
+                        otherBtn.classList.remove("active", mid);
+                    }
+                });
+            }
+
+            // Toggle clicked modifier
+            if (!isActive) {
+                btn.classList.add("active", id);
+            } else {
+                btn.classList.remove("active", id);
+            }
+
+            // After toggling, check what’s active
+            const frozenActive = document.getElementById("frozen").classList.contains("active");
+
+            if (frozenActive) {
+                ["wet", "chilled", "drenched"].forEach(mid => {
+                    document.getElementById(mid).classList.remove("active", mid);
+                    document.getElementById(mid).classList.add("disabled");
+                });
+            } else {
+                ["wet", "chilled", "drenched"].forEach(mid => {
+                    document.getElementById(mid).classList.remove("disabled");
+                });
+            }
+
+            // Handle conflict groups
+            if (!isActive && conflictGroups[id]) {
+                conflictGroups[id].forEach(conflictId => {
+                    const conflictBtn = document.getElementById(conflictId);
+                    if (conflictBtn && conflictBtn.classList.contains("active")) {
+                        conflictBtn.classList.remove("active", conflictId);
+                    }
+                });
+            }
+
+            // Special paradisal/verdant/sundried logic
+            const paradisal = document.getElementById("paradisal");
+            const verdant = document.getElementById("verdant");
+            const sundried = document.getElementById("sundried");
+            const isParadisal = paradisal && paradisal.classList.contains("active");
+            const isVerdant = verdant && verdant.classList.contains("active");
+            const isSundried = sundried && sundried.classList.contains("active");
+
+            if (!isActive) {
+                if (id === "sundried" && isParadisal && isVerdant) {
+                    document.getElementById("verdant").classList.remove("active", "verdant");
+                } else if (id === "verdant" && isParadisal && isSundried) {
+                    document.getElementById("sundried").classList.remove("active", "sundried");
+                } else if (id === "paradisal" && isVerdant && isSundried) {
+                    document.getElementById("sundried").classList.remove("active", "sundried");
+                }
+            }
+
+            const mutationSearch = document.getElementById('mutationSearch');
+            if (mutationSearch) {
+                mutationSearch.value = '';
+
+                document.querySelectorAll('#modifiers .modifier-button').forEach(btn => {
+                    const isAdmin = adminMutations.includes(btn.id);
+                    btn.style.display = (adminHidden && isAdmin) ? 'none' : 'inline-block';
+                });
+            }
+
+            debouncedCalculateValue();
+            updateSelectedModifiersDisplay();
+        }
+
+        const adminMutations = [
+            "plasma", "voidtouched", "heavenly", "molten", "meteoric",
+            "alienlike", "galactic", "fried", "infected", "radioactive",
+            "jackpot", "subzero", "blitzshock", "touchdown", "sliced",
+            "beanbound", "lightcycle"
+
+        ];
+
+        let adminHidden = false;
+
+        document.getElementById("toggleAdminMutationsBtn").addEventListener("click", () => {
+            adminHidden = !adminHidden;
+
+            adminMutations.forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) {
+                    if (adminHidden) {
+                        btn.classList.remove("active", id); // 🔥 deactivate if hidden
+                        btn.style.display = "none";
+                    } else {
+                        btn.style.display = "inline-block";
+                    }
+                }
+            });
+
+            const label = adminHidden ? "Show Admin Mutations" : "Hide Admin Mutations";
+            document.getElementById("toggleAdminMutationsBtn").textContent = label;
+
+
+            debouncedCalculateValue();
+            updateSelectedModifiersDisplay();
+        });
+        const categoryButtonsContainer = document.getElementById('categoryButtons');
+        const categoryContentsContainer = document.getElementById('categoryContents');
+
+        const petXpButton = document.createElement('button');
+        petXpButton.className = 'category-toggle-button';
+        petXpButton.textContent = 'Pet XP';
+
+
+        const petContent = document.createElement('div');
+        petContent.className = 'category-content';
+        petContent.innerHTML = `
+  <div style="margin-top: 10px;">
+  <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+  <div>
+    <label>Current Age:</label><br>
+    <input id="currentAge" type="number" min="1" max="100" value="1" />
+  </div>
+
+<div>
+  <label>Owls (0–8):</label><br>
+  <input id="owlCount" type="number" min="0" max="8" value="0" oninput="generateOwlInputs()" />
+</div>
+
+<!-- Row layout: Left = mouse/starfish; Right = owl XP inputs -->
+<div style="display: flex; flex-direction: row; gap: 20px; align-items: flex-start; flex-wrap: wrap; margin-top: 10px;">
+  <!-- Left: Mouse and Starfish buttons -->
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div>
+      <button id="brownMouseBtn" class="modifier-button" onclick="toggleMouse('brown')">Brown Mouse</button>
+      <input id="brownMouseXp" type="number" placeholder="XP per 8m" value="750" style="width: 120px;" />
+    </div>
+    <div>
+      <button id="greyMouseBtn" class="modifier-button" onclick="toggleMouse('grey')">Grey Mouse</button>
+      <input id="greyMouseXp" type="number" placeholder="XP per 10m" value="500" style="width: 120px;" />
+    </div>
+    <div>
+      <button id="starfishBtn" class="modifier-button" onclick="toggleStarfish()">Starfish</button>
+      <input id="starfishXp" type="number" placeholder="Starfish XP/s" value="6.3" style="width: 120px;" />
+    </div>
+	<div>
+  <label>Additional XP/s:</label><br>
+  <input id="customXpPerSecond" type="number" placeholder="e.g. 1.5" value="0" style="width: 120px;" />
+</div>
+<div>
+  <label>Additional XP%:</label><br>
+  <input id="additionalXpPercent" type="number" placeholder="e.g. 10" value="0" style="width: 120px;" />
+</div>
+  </div>
+
+  <!-- Right: Dynamically generated individual owl XP inputs -->
+  <div id="owlXpInputs" style="display: flex; flex-wrap: wrap; gap: 10px; max-width: 300px;">
+    <label style="width: 100%;">Owls Individual XP/s:</label>
+    <!-- inputs will be injected here -->
+  </div>
+</div>
+<div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px; max-width: 200px;">
+  <label for="targetAge">Target Age (1–100):</label>
+  <input id="targetAge" type="number" min="1" max="100" value="2" style="width: 100%;" />
+  
+  <button onclick="calculatePetGrowth()" style="padding: 8px 12px; font-size: 16px;">Calculate Growth</button>
+</div>
+
+<div id="petGrowthResult" style="font-size: 18px; color: #bdfc9a; margin-left: 5px; margin-top: 20px;"></div>
+  </div>
+`;
+
+
+        petXpButton.onclick = () => {
+            document.querySelectorAll('.category-toggle-button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.category-content').forEach(div => div.classList.remove('active'));
+
+            petXpButton.classList.add('active');
+            petContent.classList.add('active');
+
+            document.getElementById('mainCalculator').style.display = 'none';
+        };
+
+        const eggHatchButton = document.createElement('button');
+        eggHatchButton.className = 'category-toggle-button';
+        eggHatchButton.textContent = 'Egg Hatch Speed';
+
+        const eggHatchContent = document.createElement('div');
+        eggHatchContent.className = 'category-content';
+        eggHatchContent.innerHTML = `
+  <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 16px;">
+
+    <!-- TOP INPUTS ROW -->
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
+      <!-- Egg Hatch Time -->
+      <div>
+        <label>Egg Hatch Time:</label><br/>
+        <input id="eggHatchHours" type="number" min="0" placeholder="Hours" style="width: 80px;" /> h
+        <input id="eggHatchMinutes" type="number" min="0" max="59" placeholder="Minutes" style="width: 80px;" /> min
+      </div>
+
+      <!-- Total Hatch Bonus -->
+      <div>
+        <label for="hatchSpeedBonus">Total Hatch Speed Bonus (%):</label><br/>
+        <input id="hatchSpeedBonus" type="number" min="0" max="1000" step="0.01" value="0" style="width: 100px;" />
+      </div>
+
+      <!-- Kiwi Count -->
+      <div>
+        <label>Number of Kiwis:</label><br/>
+        <input id="kiwiCount" type="number" min="0" max="8" value="0" oninput="generateKiwiInputs()" style="width: 60px;" />
+      </div>
+
+      <!-- Eagle Count -->
+      <div>
+        <label>Number of Eagles:</label><br/>
+        <input id="eagleCount" type="number" min="0" max="10" value="0" oninput="generateEagleInputs()" style="width: 60px;" />
+      </div>
+    </div>
+
+    <!-- STATS GRID ROW -->
+    <div id="hatchStatsGrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <!-- Left = Kiwi Stats -->
+      <div id="kiwiFirstRow" style="display: flex; flex-direction: column; gap: 8px;"></div>
+
+      <!-- Right = Eagle Stats -->
+      <div id="eagleFirstRow" style="display: flex; flex-direction: column; gap: 8px;"></div>
+    </div>
+
+    <!-- Controls -->
+    <button onclick="calculateEggHatch()" style="margin-top: 10px;">Calculate Hatch Time</button>
+    <button onclick="resetEggHatchForm()" style="margin-top: 5px;">Reset</button>
+    <div id="eggHatchResult" style="margin-top: 10px; color: #bdfc9a; font-size: 16px;"></div>
+  </div>
+`;
+
+        const petWeightButton = document.createElement('button');
+        petWeightButton.className = 'category-toggle-button';
+        petWeightButton.textContent = 'Pet Weight by Age';
+
+        const petWeightContent = document.createElement('div');
+        petWeightContent.className = 'category-content';
+        petWeightContent.innerHTML = `
+  <div style="margin-top: 10px; display: flex; flex-direction: row; gap: 10px; overflow: auto;">
+    <!-- Left panel: Inputs -->
+    <div style="display: flex; flex-direction: column; gap: 10px; min-width: 200px; flex: 1;">
+      <label>Current Weight (kg):</label>
+      <input id="petWeightCurrent" type="number" min="0" step="0.01" value="1.00" style="width: 70%; padding: 6px 8px; font-size: 14px;" />
+
+      <label>Pet Age (1–100):</label>
+      <input id="petWeightAge" type="number" min="1" max="100" value="1" style="width: 70%; padding: 6px 8px; font-size: 14px;" />
+
+      <button onclick="calculatePetWeights()" style="width: 70%; padding: 6px 8px; font-size: 14px; border-radius: 6px; background-color: #2e2e2e; color: #e0e0e0; border: 1px solid #444;">
+        Calculate
+      </button>
+    </div>
+
+    <!-- Right panel: Result and Age List -->
+    <div style="display: flex; flex-direction: column; gap: 1px; flex: 1;">
+      <div id="petWeightResults" style="font-size: 16px; color: #bdfc9a;"></div>
+      <pre id="ageListDisplay" style="display: none; max-height: 200px; overflow-y: auto; background: #1e1e1e; padding: 2px; padding-left: 1px; border: 1px solid #444; border-radius: 6px; color: #ccc; flex: 1;"></pre>
+    </div>
+  </div>
+`;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleBtn = document.getElementById("toggleAgeListBtn");
+            const ageBox = document.getElementById("ageListDisplay");
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener("click", () => {
+                    if (ageBox.style.display === "none" || ageBox.textContent.trim() === "") {
+                        calculatePetWeights();
+                    } else {
+                        ageBox.style.display = "none";
+                        toggleBtn.textContent = "Show Age 1–100";
+                    }
+                });
+            }
+        });
+
+        petWeightButton.onclick = () => {
+            document.querySelectorAll('.category-toggle-button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.category-content').forEach(div => div.classList.remove('active'));
+
+            petWeightButton.classList.add('active');
+            petWeightContent.classList.add('active');
+
+            document.getElementById('mainCalculator').style.display = 'none';
+        };
+
+
+        Object.entries(categories).forEach(([title, ids]) => {
+
+
+
+            const btn = document.createElement('button');
+            btn.className = 'category-toggle-button';
+            btn.textContent = title;
+
+
+
+
+            if (title === "Beanstalk Update") {
+                btn.classList.add('bee-default-glow');
+            }
+
+
+
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'category-content';
+
+            ids.forEach(id => {
+                const plantButton = document.createElement('button');
+                plantButton.className = 'fruit-button';
+                plantButton.id = id;
+
+                plantButton.innerHTML = `
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <img src="Images/${id}.webp" alt="${id}" />
+        <span style="margin-top: 5px; font-size: 14px; color: #ccc;">${id}</span>
+      </div>
+    `;
+                plantButton.onclick = () => {
+                    const plantId = plantButton.id;
+                    selectedPlant = plantId;
+
+                    if (plantId === 'goldenegg') {
+                        toggleModifier('fortune');
+                    }
+
+                    const dawnboundBtn = document.getElementById("dawnbound");
+                    if (dawnboundBtn) {
+                        dawnboundBtn.classList.remove("disabled");
+                    }
+
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.fruit-button.active').forEach(b => b.classList.remove('active'));
+                    
+                    // Set minimum weight
+                    const minWeight = plantMinWeights && plantMinWeights[plantId] ? plantMinWeights[plantId] : 1;
+                    const weightInput = document.getElementById('weight');
+                    if (weightInput) {
+                        weightInput.value = minWeight.toFixed(3);
+                    }
+                    
+                    // Add active class to clicked button
+                    document.querySelectorAll(`.fruit-button[id='${plantId}']`).forEach(b => b.classList.add('active'));
+
+                    // Call functions safely
+                    if (typeof debouncedCalculateValue === 'function') {
+                        debouncedCalculateValue();
+                    }
+                    if (typeof updateSelectedModifiersDisplay === 'function') {
+                        updateSelectedModifiersDisplay();
+                    }
+                };
+                contentDiv.appendChild(plantButton);
+
+            });
+
+
+
+            btn.onclick = () => {
+                document.querySelectorAll('.category-toggle-button').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.category-content').forEach(div => div.classList.remove('active'));
+
+                btn.classList.add('active');
+                contentDiv.classList.add('active');
+
+                petXpButton.classList.remove('active');
+                petContent.classList.remove('active');
+
+                if (btn.classList.contains('bee-default-glow')) {
+                    btn.classList.remove('bee-default-glow');
+                }
+                document.getElementById('mainCalculator').style.display = 'block';
+
+            };
+
+            categoryButtonsContainer.appendChild(btn);
+            categoryContentsContainer.appendChild(contentDiv);
+            categoryButtonsContainer.appendChild(petXpButton);
+            categoryContentsContainer.appendChild(petContent);
+        });
+        document.getElementById('plantSearch').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const allButtons = document.querySelectorAll('.fruit-button');
+
+            allButtons.forEach(btn => {
+                const plantName = btn.id.toLowerCase();
+                btn.style.display = plantName.includes(query) ? 'flex' : 'none';
+            });
+        });
+        window.onload = () => {
+            const firstCategory = document.querySelector('.category-toggle-button');
+            if (firstCategory) firstCategory.click();
+        };
+
+        eggHatchButton.onclick = () => {
+            document.querySelectorAll('.category-toggle-button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.category-content').forEach(div => div.classList.remove('active'));
+
+            eggHatchButton.classList.add('active');
+            eggHatchContent.classList.add('active');
+
+            document.getElementById('mainCalculator').style.display = 'none';
+        };
+        categoryButtonsContainer.appendChild(eggHatchButton);
+        categoryContentsContainer.appendChild(eggHatchContent);
+        categoryButtonsContainer.appendChild(petWeightButton);
+        categoryContentsContainer.appendChild(petWeightContent);
+    </script>
+    <script src="javascript/pets.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const isMobile = window.innerWidth < 900;
+            const categoryButtonsContainer = document.getElementById('categoryButtons');
+            const categoryContentsContainer = document.getElementById('categoryContents');
+
+            // Create the Pet Ability Button
+            const petAbilityButton = document.createElement('button');
+            petAbilityButton.className = 'category-toggle-button';
+            petAbilityButton.textContent = 'Pet Ability';
+
+            // Create the Content Area
+            const petAbilityContent = document.createElement('div');
+            petAbilityContent.className = 'category-content';
+            petAbilityContent.innerHTML = `
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <input type="text" id="petSearch" placeholder="Search for a pet..." />
+      <div id="petAbilityButtons" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+      <div id="petAbilityOutput" style="margin-top: 20px;"></div>
+    </div>
+  `;
+
+            // Append to DOM
+            categoryButtonsContainer.appendChild(petAbilityButton);
+            categoryContentsContainer.appendChild(petAbilityContent);
+
+            // Category switch logic
+            petAbilityButton.onclick = () => {
+                document.querySelectorAll('.category-toggle-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.category-content').forEach(div => div.classList.remove('active'));
+                petAbilityButton.classList.add('active');
+                petAbilityContent.classList.add('active');
+                document.getElementById('mainCalculator').style.display = 'none';
+            };
+
+
+
+            // Pet Button Logic
+            const petNames = ['bunny', 'lobster', 'kiwi', 'bloodkiwi', 'mimic', 'capybara', 'sloth', 'dilo', 'rainbowdilo', 'peacock', 'orangetabby', 'mooncat',
+                'seaturtle', 'frog', 'echofrog', 'brontosaurus', 'queenbee', 'starfish', 'spinosaurus', 'kitsune', 'ckitsune', 'ferret',
+                'goldengoose', 'koi', 'seal', 'wasp', 'owl', 'nightowl', 'bloodowl', 'cookedowl', 'butterfly', 'trex', 'mole',
+                'triceratops', 'golem', 'dragonfly', 'chickenzombie', 'raptor', 'redfox', 'meerkat', 'fennecfox', 'kappa',
+                'tarantulahawk', 'spriggan', 'discobee', 'baldeagle', 'rooster', 'ostrich', 'gorillachef', 'raccoon', 'hotdog', 'greenbean',
+                'lemonlion', 'applegazelle', 'peachwasp', 'iguanodon', 'rainbowiguanodon', 'squirrel', 'dog', 'goldenlab', 'shibainu',
+                'snail', 'tanuki', 'orangutan', 'pachycephalo', 'flamingo', 'bee'
+            ];
+            const buttonContainer = petAbilityContent.querySelector('#petAbilityButtons');
+
+            petNames.forEach(name => {
+                const btn = document.createElement('button');
+                btn.className = 'ability-button';
+                btn.innerHTML = `
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <img src="images/pets/${name}.webp" style="width: 48px; height: 48px;" />
+      <span style="font-size: 12px; color: #eee;">${name}</span>
+    </div>
+  `;
+                btn.onclick = function() {
+                    if (typeof window.showPetAbility === "function") {
+                        window.showPetAbility(name);
+                    } else {
+                        console.error("showPetAbility is not defined");
+                    }
+
+                    // Remove glow from all buttons
+                    document.querySelectorAll('.ability-button').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    // Auto-scroll to the generated inputs on mobile
+                    if (window.innerWidth < 900) {
+                        setTimeout(() => {
+                            const inputFields = document.querySelector("#petAbilityOutput input");
+                            if (inputFields) {
+                                inputFields.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start"
+                                });
+                            }
+                        }, 200); // small delay so inputs have time to render
+                    }
+                };
+                buttonContainer.appendChild(btn);
+            });
+
+            // Search filter
+            document.getElementById('petSearch').addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                const buttons = buttonContainer.querySelectorAll('.ability-button');
+                buttons.forEach(button => {
+                    button.style.display = button.textContent.toLowerCase().includes(query) ? 'flex' : 'none';
+                });
+            });
+
+            // Mobile Dropdown Support
+            if (isMobile) {
+                const mobileSelect = document.getElementById('mobileCategorySelect');
+                const categoryToggle = document.querySelector('.category-toggle');
+
+                if (mobileSelect && categoryToggle) {
+                    categoryToggle.style.display = 'none';
+                    mobileSelect.parentElement.style.display = 'block';
+
+                    // Rebuild dropdown options
+                    mobileSelect.innerHTML = '';
+                    document.querySelectorAll('.category-toggle-button').forEach(btn => {
+                        const option = document.createElement('option');
+                        option.value = btn.textContent.trim();
+                        option.textContent = btn.textContent.trim();
+                        mobileSelect.appendChild(option);
+                    });
+
+                    mobileSelect.addEventListener('change', (e) => {
+                        const selected = e.target.value;
+                        document.querySelectorAll('.category-toggle-button').forEach(btn => {
+                            if (btn.textContent.trim() === selected) btn.click();
+                        });
+                    });
+                }
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+    <div id="mutationModalOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.7); z-index: 9998;"></div>
+
+    <!-- Modal Window -->
+    <div id="mutationModal" style="
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1e1e1e;
+  color: #e0e0e0;
+  padding: 20px;
+  border: 1px solid #444;
+  border-radius: 10px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 9999;
+  width: 90%;
+  max-width: 700px;
+">
+        <div style="text-align: right;">
+            <button id="closeMutationModal" style="background: transparent; color: #ccc; font-size: 20px; border: none; cursor: pointer;">✖</button>
+        </div>
+        <h2 style="margin-top: 0;">Mutations and multipliers - List by @neyzu</h2>
+        <ul style="padding-left: 20px;">
+            <li>🔘 <b>Silver</b> – Obtained when a fruit grows ,or fertilizer, x5 </li>
+            <li>🌟 <b>Gold</b> – Obtained when a fruit grows or with a dragonfly,or fertilizer, x20 </li>
+            <li>🌈 <b>Rainbow</b> – Obtained when a fruit grows or with a butterfly,or fertilizer, x50</li>
+            <li>💧 <b>Wet</b> – Obtained during rain weather,with spray,or with pets, x2 </li>
+            <li>❄️ <b>Chilled</b> – Obtained during the snow weather or with sprays, 2x </li>
+            <li>🧊 <b>Frozen</b> – Wet & chilled creates ‘Frozen’, x10</li>
+            <li>🍫 <b>Choc</b> – From sprinklers, spray or admin weather, x2</li>
+            <li>⚡<b>Shocked</b> - From thunder weather or jandel event, 100x</li>
+            <li>🌙 <b>Moonlit</b> – From Night event, 2x</li>
+            <li>🩸 <b>Bloodlit</b> – Blood Moon event, 4x</li>
+            <li>🥳 <b>Disco</b> - Disco admin event,discobee,spray, 125x</li>
+            <li>☄️ <b>Celestial</b> – Meteor Shower event, 120x</li>
+            <li>🧟 <b>Zombified</b> – Chicken Zombie passive, 25x</li>
+            <li>⚡ <b>Plasma</b> – Admin Lazer Event, 5x</li>
+            <li>🌌 <b>Void Touched</b> – Admin Blackhole event, 135x</li>
+            <li>🍗 <b>Burnt</b> – From cooked owl pet or spray, 4x</li>
+            <li>🔥 <b>Molten</b> – Admin Volcano event, 25x</li>
+            <li>🌠 <b>Meteoric</b> – Meteor Strike event, 125x</li>
+            <li>👼 <b>Heavenly</b> – Jandel admin event, 5x</li>
+            <li>🏜️ <b>Sandy</b> – Sandstorm weather, 3x</li>
+            <li>🧱 <b>Clay</b> – Mix wet and sandy, 5x</li>
+            <li>🏺 <b>Ceramic</b> – Mix clay and burnt/sundried, 30x</li>
+            <li>☀️ <b>Dawnbound</b> – Sun god event,holding 4 sunflowers,Ascended Mutation pets, 150x</li>
+            <li>🌬️ <b>Windstruck</b> – Gale/windy events or pterodactyl,spray, 2x</li>
+            <li>🌪️ <b>Twisted</b> – Tornado event or pterodactyl, 5x</li>
+            <li>☀️ <b>Sundried</b> – Heat Wave weather, 85x</li>
+            <li>🌿 <b>Verdant</b> – Scarlet Macaw,spray, 4x</li>
+            <li>🌴 <b>Paradisal</b> – Sundried + Verdant, 100x</li>
+            <li>🌌 <b>Galactic</b> – Admin event, 120x</li>
+            <li>🧊 <b>Aurora</b> – Aurora Borealis weather, 90x</li>
+            <li>🌧️ <b>Drenched</b> – Tropical Rain weather, 5x</li>
+            <li>🌸 <b>Cloudtouched</b> – Hyacinth Macaw or spray, 5x</li>
+            <li>🐝 <b>Pollinated</b> – Bee swarm/bees, 3x</li>
+            <li>🍯 <b>HoneyGlazed</b> – Honey sprinkler/bear bee, 5x</li>
+            <li>👽 <b>Alienlike</b> – Alienlike admin event, 100x</li>
+            <li>🍳 <b>Fried</b> – Fried rain admin event, 8x</li>
+            <li>🍖 <b>Cooked</b> – With cooked owl, 10x</li>
+            <li>🧡 <b>Amber</b> – Raptor or amber spray, 10x</li>
+            <li>🟠 <b>OldAmber</b> – Let “Amber” age, 20x</li>
+            <li>🟠 <b>AncientAmber</b> – Let “OldAmber” age, 50x</li>
+            <li>👬 <b>Friendbound</b> – Possesing linked friendpots or having 5 friends in-server,70x</li>
+            <li>💨 <b>Tempestous</b> – Windstruck+Twisted ,12x</li>
+            <li>🧟 <b>Infected</b> – Zombie Admin Mutation ,75x</li>
+            <li>🧘<b>Tranquil</b> – Zen Hourly Event mutation,Tranquil pets ,20x</li>
+            <li>😈<b>Corrupt</b> – Corrupt tree Hourly reset,Corrupt pets ,20x</li>
+            <li>☯️<b>(Corrupt)Chakra</b> – (Corrupt)Kitsune pet ability ,15x</li>
+            <li>☯️<b>HarmonisedChakra</b> – Chakra plus CorruptChakra ,35x</li>
+            <li>🦊<b>(Corrupt)FoxfireChakra</b> – Very rare chance from (Corrupt)kitsune pet , 90x</li>
+            <li>🦊<b>HarmonisedFoxfireChakra</b> – Foxfire+CorruptFoxfireChakra , 190x</li>
+            <li>☢️<b>Radioactive</b> – Carrot Rocket admin event ,80x</li>
+            <li>🏈<b>Subzero</b> – Travis Kelce admin event ,40x</li>
+            <li>🏈<b>Jackpot</b> – Travis Kelce admin event ,15x</li>
+            <li>🏈<b>Blitzshock</b> – Travis Kelce admin event ,50x</li>
+            <li>🏈<b>Touchdown</b> – Travis Kelce admin event ,105x</li>
+            <li>⚡ <b>Static</b> – Raiju Pet passive, 8x</li>
+            <li>🗡️<b>Sliced</b> – Jandel Admin Event, 50x</li>
+            <li>🥣<b>Sauce</b> – Spaghetti Sloth mutation, 3x</li>
+            <li>🍝<b>Pasta</b> – Spaghetti Sloth mutation, 3x</li>
+            <li>🧆<b>Meatball</b> – Spaghetti Sloth mutation, 3x</li>
+            <li>🍝️<b>Spaghetti</b> – Sauce+Pasta+Meatball, 12x</li>
+            <li>🌿<b>Aromatic</b> – Kitchen storm event, 15x</li>
+            <li>🛢️<b>Oil</b> – Flamingo Admin event, 15x</li>
+            <li>♨️<b>Boil</b> – Flamingo Admin event, 15x</li>
+            <li>⚡<b>Junkshock</b> – Flamingo Admin event, 45x</li>
+            <li>🌸 <b>Bloom</b> – Obtained using spray or pet passive, 8x</li>
+            <li>🌙 <b>Eclipsed</b> – From Eclipse weather event, 20x</li>
+            <li>💰 <b>Fortune</b> – From Golden Goose,or spawns on Golden Egg, 50x</li>
+            <li>🚦<b>Lightcycle</b> – Blood owl Stoplight Admin event, 50x</li>
+            <li>🌀<b>Cyclonic</b> - Griffin pet mutation, 50x </li>
+            <li>🌀<b>Warped</b> - Admin event mutation, 75x </li>
+            <li>🥀<b>Rot</b> - Mandrake Pet Mutation, 8x </li>
+            <li>🥀<b>Gloom</b> - Bloom+Rot mutation, 30x </li>
+            <li>🧠<b>Brainrot</b> - Admin event mutation, 100x </li>
+            <li>🍄<b>Gnomed</b> - Gnome pet mutation, 15x </li>
+            <li>🌿<b>Beanbound</b> – Hold 4 Beanstalks out during beanbound event, 100x</li>
+            <li>💨 <b>Maelstrom</b> – Tempestous+Cyclonic ,100x</li>
+
+
+        </ul>
+    </div>
+    <script>
+        const showBtn = document.getElementById("showMutationInfoBtn");
+        const closeBtn = document.getElementById("closeMutationModal");
+        const modal = document.getElementById("mutationModal");
+        const overlay = document.getElementById("mutationModalOverlay");
+
+        showBtn.addEventListener("click", () => {
+            modal.style.display = "block";
+            overlay.style.display = "block";
+        });
+
+        closeBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+            overlay.style.display = "none";
+        });
+
+        overlay.addEventListener("click", () => {
+            modal.style.display = "none";
+            overlay.style.display = "none";
+        });
+    </script>
+
+    <script>
+        document.getElementById("sortAlphabeticalBtn").addEventListener("click", () => {
+            const container = document.getElementById("modifiers");
+            const buttons = Array.from(container.querySelectorAll(".modifier-button"));
+
+            buttons.sort((a, b) => {
+                const nameA = a.textContent.toLowerCase();
+                const nameB = b.textContent.toLowerCase();
+                return nameA.localeCompare(nameB);
+            });
+
+            buttons.forEach(btn => container.appendChild(btn));
+        });
+    </script>
+    <script>
+        let isSortedByValue = false; // state flag to track sorting
+
+        const originalOrder = [...modifiers]; // preserve original order
+
+        document.getElementById("sortMutationsBtn").addEventListener("click", () => {
+            const container = document.getElementById("modifiers");
+
+            if (!isSortedByValue) {
+                // Sort by descending value
+                const buttons = Array.from(container.querySelectorAll(".modifier-button"));
+
+                const getValue = id => {
+                    if (id === "rainbow") return 99999;
+                    if (id === "gold") return 99998;
+                    if (id === "silver") return 99997;
+                    const desc = modifierDescriptions[id];
+                    return parseFloat((desc && desc.replace("x", "")) || "0");
+                };
+
+                buttons.sort((a, b) => getValue(b.id) - getValue(a.id));
+
+                buttons.forEach(btn => container.appendChild(btn));
+
+                document.getElementById("sortMutationsBtn").textContent = "Revert to Original Order";
+                isSortedByValue = true;
+            } else {
+                // Revert to original order
+                originalOrder.forEach(id => {
+                    const btn = document.getElementById(id);
+                    if (btn) container.appendChild(btn);
+                });
+
+                document.getElementById("sortMutationsBtn").textContent = "Sort by Value (Descending)";
+                isSortedByValue = false;
+            }
+        });
+    </script>
+
+
+
+    <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+        <a href="/about" class="btn">About</a>
+        <a href="/contact" class="btn">Contact</a>
+        <a href="/privacy-policy" class="btn">Privacy Policy</a>
+        <a href="/terms-of-service" class="btn">Terms of Service</a>
+        <div>
+            Made by - mujeib101
+         <!--img src="images/cat.webp" alt="Cat" style="height: 20px; vertical-align: middle; margin-right: 6px;" /><br/>
+            <button id="openContributorsModal" style="margin-top: 10px; padding: 8px 16px; font-size: 16px; background-color: #2e2e2e; color: #e0e0e0; border: 1px solid #444; border-radius: 6px; cursor: pointer;">
+  Show Contributors
+</button> -->
+
+            <!-- Modal + Overlay -->
+            <div id="contributorsOverlay" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 9998;"></div>
+
+            <div id="contributorsModal" style="
+  display: none;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1e1e1e;
+  color: #e0e0e0;
+  padding: 20px;
+  border: 1px solid #444;
+  border-radius: 10px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 9999;
+  width: 90%;
+  max-width: 500px;">
+                <div style="text-align: right;">
+                    <button id="closeContributorsModal" style="background: transparent; color: #ccc; font-size: 20px; border: none; cursor: pointer;">✖</button>
+                </div>
+                <h2>Contributors</h2>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li>@a_bearr</li>
+                    <li>@trixyb</li>
+                    <li>@neyzu</li>
+                    <li>@glowy0245</li>
+                    <li>@sho.___.</li>
+                    <li>@alonelygalaxy</li>
+                    <li>@7ver</li>
+                    <li>@dezinxwasoncemyname</li>
+                    <li>@chin.gt</li>
+                    <li>@amissaore</li>
+                    <li>@mista.peen</li>
+                    <li>@veh278</li>
+                    <li>@aievui</li>
+                    <li>@aauto1</li>
+                    <li>@samad1402</li>
+                    <li>@dam.dev</li>
+                    <li>@roll.cake</li>
+                    <li>@capzap_</li>
+                    <li>@neverforget9</li>
+                    <li>@0Raisei0</li>
+                    <li>@itsmeyumi_</li>
+                    <li>@harveyhas0game</li>
+                    <li>@yknowana</li>
+                    <li>@officialmolly</li>
+                    <li>@ips_ferrari</li>
+                </ul>
+            </div>
+
+   <!--  </div>
+        <br/>
+        <a href="https://www.buymeacoffee.com/awesomedu" title="Support the site"><img src="https://img.buymeacoffee.com/button-api/?text=Support the site&amp;emoji=&amp;slug=awesomedu&amp;button_colour=5F7FFF&amp;font_colour=ffffff&amp;font_family=Arial&amp;outline_colour=000000&amp;coffee_colour=FFDD00" alt="Support the site on Buy Me A Coffee"/></a>
+        <br/>
+        <br/>
+    </div> -->
+    </footer>
+    <script>
+        const plansBtn = document.getElementById('togglePlans');
+        const plansSection = document.getElementById('plansSection');
+
+        plansBtn.addEventListener('click', () => {
+            const isVisible = plansSection.style.display === 'block';
+            plansSection.style.display = isVisible ? 'none' : 'block';
+            plansBtn.textContent = isVisible ? 'Show Future Plans' : 'Hide Future Plans';
+        });
+
+        function updateSelectedModifiersDisplay() {
+            const rainbowEl = document.getElementById("rainbow");
+            const goldEl = document.getElementById("gold");
+            const silverEl = document.getElementById("silver");
+            
+            const fruitMultiplier = (rainbowEl && rainbowEl.classList.contains("active")) ? 50 : 
+                                   (goldEl && goldEl.classList.contains("active")) ? 20 :
+                                   (silverEl && silverEl.classList.contains("active")) ? 5 : 1;
+
+            const modValues = {
+                shocked: 100,
+                frozen: 10,
+                wet: 2,
+                chilled: 2,
+                choc: 2,
+                moonlit: 2,
+                bloodlit: 4,
+                celestial: 120,
+                disco: 125,
+                zombified: 25,
+                plasma: 5,
+                voidtouched: 135,
+                pollinated: 3,
+                honeyglazed: 5,
+                dawnbound: 150,
+                heavenly: 5,
+                cooked: 10,
+                burnt: 4,
+                molten: 25,
+                meteoric: 125,
+                windstruck: 2,
+                alienlike: 100,
+                sundried: 85,
+                verdant: 4,
+                paradisal: 100,
+                twisted: 5,
+                galactic: 120,
+                aurora: 90,
+                cloudtouched: 5,
+                drenched: 5,
+                fried: 8,
+                amber: 10,
+                ceramic: 30,
+                ancientamber: 50,
+                sandy: 3,
+                clay: 5,
+                oldamber: 20,
+                tempestous: 12,
+                friendbound: 70,
+                infected: 75,
+                tranquil: 20,
+                chakra: 15,
+                radioactive: 80,
+                foxfire: 90,
+                corrupt: 20,
+                subzero: 40,
+                blitzshock: 50,
+                jackpot: 15,
+                touchdown: 105,
+                static: 8,
+                harmonisedfoxfire: 190,
+                harmonisedchakra: 35,
+                sliced: 50,
+                pasta: 3,
+                sauce: 3,
+                meatball: 3,
+                acidic: 15,
+                aromatic: 15,
+                oil: 15,
+                boil: 15,
+                junkshock: 45,
+                bloom: 8,
+                eclipsed: 25,
+                fortune: 50,
+                lightcycle: 50,
+                gnomed: 15,
+                cyclonic: 50,
+                brainrot: 100,
+                rot: 8,
+                warped: 75,
+                beanbound: 100,
+                gloom: 30,
+                maelstrom: 100
+            };
+
+            const modColors = {
+                rainbow: 'gold',
+                gold: 'gold',
+                shocked: '#ffe66d',
+                frozen: '#72bff5',
+                chilled: '#72bff5',
+                wet: '#66b6e3',
+                choc: '#3d2218',
+                moonlit: '#999dff',
+                bloodlit: '#B00000',
+                celestial: '#f04ac3',
+                disco: '#f48fd6',
+                zombified: '#4bb973',
+                plasma: '#9d2d6f',
+                voidtouched: '#D24CFF',
+                pollinated: '#ffaa1c',
+                honeyglazed: '#ffc94d',
+                dawnbound: '#ffccff',
+                heavenly: '#F2EB99',
+                cooked: '#cc6600',
+                burnt: '#1e1e1e',
+                molten: '#e76a0b',
+                meteoric: '#403483',
+                windstruck: '#a2b9d1',
+                sundried: '#cf5d00',
+                alienlike: '#5cc6b1',
+                verdant: '#386f28',
+                paradisal: '#9dc237',
+                galactic: '#a96cd4',
+                sandy: '#d4bf8d',
+                clay: '#966450',
+                ceramic: '#eab892',
+                aurora: '#6258ac',
+                twisted: '#b8b8b8',
+                cloudtouched: '#defcfc',
+                ancientamber: '#893314',
+                amber: '#ffc000',
+                fried: '#974d1c',
+                oldamber: '#ac6e5e',
+                friendbound: '#e9267e',
+                tempestous: '#8ca0b1',
+                infected: '#43a700',
+                tranquil: '#ffffff',
+                radioactive: '#62ff00',
+                corrupt: '#b0171a',
+                sliced: '#dfdfdf',
+                junkshock: '#93f700',
+                oil: '#32324b',
+                subzero: '#00ffff',
+                jackpot: '#84f570',
+                silver: '#c0c0c0',
+                acidic: '#8cf947',
+                sauce: '#c62d23',
+                boil: '#8aa4cf',
+                aromatic: '#8d8130',
+                touchdown: '#cb5f00',
+                meatball: '#843431',
+                blitzshock: '#00bbef',
+                pasta: '#e5cc84',
+                static: '#fdfddf',
+                spaghetti: '#f8ba8e',
+                bloom: '#97c738',
+                eclipsed: '#24405a',
+                lightcycle: '#ffffff',
+                brainrot: '#fd6b6d',
+                warped: '#bd33fb',
+                maelstrom: ' #0f43d7',
+                gloom: '#444564',
+                fortune: '#ffd700'
+            };
+
+            let sum = 0;
+            let parts = [];
+            let breakdown = [];
+            let activeMods = [];
+
+            const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
+
+            if (rainbowEl && rainbowEl.classList.contains("active")) {
+                activeMods.push(`<span class="rainbow-animated">${capitalize("rainbow")}</span>`);
+            } else if (goldEl && goldEl.classList.contains("active")) {
+                activeMods.push(`<span style="color:${modColors.gold}; font-weight: bold;">${capitalize("gold")}</span>`);
+            }
+
+            for (const [mod, val] of Object.entries(modValues)) {
+                const el = document.getElementById(mod);
+                if (el && el.classList.contains("active")) {
+                    sum += val;
+                    parts.push(val);
+                    breakdown.push("+" + val);
+                    let outlineStyle = '';
+                    if (mod === 'choc' || mod === 'burnt' || mod === 'oil') {
+                        outlineStyle = 'text-shadow: 0 0 1px white, 0 0 2px white;';
+                    }
+                    activeMods.push(`<span style="color:${modColors[mod] || '#bdfc9a'}; ${outlineStyle}">${capitalize(mod)}</span>`);
+                }
+            }
+
+            const modifierCount = parts.length;
+            const effectiveMultiplier = 1 + sum - modifierCount;
+            const finalMultiplier = fruitMultiplier * effectiveMultiplier;
+
+            const formula = `(${fruitMultiplier} × (1 ${breakdown.join(" ")} - ${modifierCount})) → (${fruitMultiplier} × ( 1 + ${sum} - ${modifierCount})) = x${finalMultiplier}`;
+            document.getElementById("selectedModifiersDisplay").textContent = formula;
+
+
+            const plantName = selectedPlant ? capitalize(selectedPlant) : "???";
+            const weight = document.getElementById("weight").value || "1.00";
+            const breakdownText = `${activeMods.join(" + ")} <span style="color:#ffffff;">${plantName}</span> <span style="color:white;">${weight}kg</span> would cost around:`;
+            document.getElementById("mutationBreakdown").innerHTML = breakdownText;
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('layoutContainer');
+            const toggleBtn = document.getElementById('layoutToggleBtn');
+
+            // Restore saved layout
+            const savedLayout = localStorage.getItem('layoutMode');
+            const isSideBySide = savedLayout === 'side-by-side';
+
+            // Apply the saved layout mode (default or side-by-side)
+            if (isSideBySide) {
+                container.classList.add('layout-side-by-side');
+                container.classList.remove('layout-default');
+                toggleBtn.textContent = 'Switch to stacked display';
+            } else {
+                container.classList.add('layout-default');
+                container.classList.remove('layout-side-by-side');
+                toggleBtn.textContent = 'Switch to side-by-side display';
+            }
+
+            // Toggle layout on click
+            toggleBtn.addEventListener('click', () => {
+                const isNowSideBySide = container.classList.toggle('layout-side-by-side');
+                container.classList.toggle('layout-default');
+
+                // Update the button text based on the new layout
+                if (isNowSideBySide) {
+                    localStorage.setItem('layoutMode', 'side-by-side');
+                    toggleBtn.textContent = 'Switch to stacked display';
+                } else {
+                    localStorage.setItem('layoutMode', 'stacked');
+                    toggleBtn.textContent = 'Switch to side-by-side display';
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleBtn = document.getElementById("toggleValueModeBtn");
+            toggleBtn.classList.add("glow-highlight");
+            setTimeout(() => {
+                toggleBtn.classList.remove("glow-highlight");
+            }, 30000);
+            const box = document.getElementById("valueToWeightBox");
+            const input = document.getElementById("valueInput");
+            const updateBtn = document.getElementById("updateWeightBtn");
+            let lastUpdate = 0;
+
+            toggleBtn.addEventListener("click", () => {
+                const showing = box.style.display === "block";
+                box.style.display = showing ? "none" : "block";
+                if (!showing) {
+                    document.getElementById("weightFromValue").innerText = "≈0 kg";
+                }
+            });
+
+            updateBtn.addEventListener("click", () => {
+                const now = Date.now();
+                if (now - lastUpdate < 500) return; // throttle to 1 call per 500ms
+                lastUpdate = now;
+
+                calculateWeightFromValue();
+            });
+        });
+    </script>
+</body>
+</html>
