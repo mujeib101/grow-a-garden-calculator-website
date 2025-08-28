@@ -7,7 +7,7 @@ A comprehensive, accuracy‑focused, fanmade web calculator for the Roblox game 
 > Not an official Grow a Garden product. All data gathered by in‑game testing (no game code used).
 
 ---
-## ✨ Key Features
+##  Key Features
 - **Plant Database**: Hundreds of plants with minimum (threshold) weights and piecewise quadratic base value formulas.
 - **Accurate Value Formula**: Uses weight → base value mapping + (Rainbow / Gold / Silver / none) fruit rarity multiplier + (Sum of active modifiers − Count + 1) logic.
 - **Mutation / Modifier System**:
@@ -22,7 +22,7 @@ A comprehensive, accuracy‑focused, fanmade web calculator for the Roblox game 
 - **Safety & Clarity**: Clean separation of data (weights & piecewise logic) from UI handlers.
 
 ---
-## 🧠 Core Formulae
+##  Core Formulae
 ### Forward (Weight → Value)
 ```
 value = ceil( BaseValue(plant, weight) * FruitMultiplier * ( Σ(modifierMultipliers) − ActiveModifierCount + 1 ) * PlantAmount * FriendBoostMultiplier )
@@ -36,7 +36,7 @@ Where:
 Rearranges the formula and inverts the quadratic region to estimate weight; clamps to ≤ min threshold when still inside flat segment.
 
 ---
-## 📁 Project Structure (Relevant Portions)
+## Project Structure (Relevant Portions)
 ```
 index.html                  # Main UI markup, mutation listing, sliders, modals
 css/                         # Stylesheets (responsive: general, desktop, mobile)
@@ -48,7 +48,7 @@ README.md                    # This documentation
 Deprecated files (`calculator.js`, `secret.js`) were removed after consolidation into `calculator_fixed.js`.
 
 ---
-## 🚀 Running Locally
+##  Running Locally
 No build step required.
 1. Clone the repository
 2. Open `index.html` in any modern browser (Chrome / Edge / Firefox).
@@ -61,7 +61,7 @@ python -m http.server 8080
 ```
 
 ---
-## 🔧 Updating Data / Multipliers
+##  Updating Data / Multipliers
 | Category | Where to Edit | Notes |
 |----------|---------------|-------|
 | Plant min weights | `calculator_fixed.js` (plantMinWeights) | Keep sorted logically for readability. |
@@ -75,7 +75,7 @@ After edits, test:
 2. Use Value → Weight with known weights to verify near‑symmetry.
 
 ---
-## 🧪 Sanity Test Scenarios
+##  Sanity Test Scenarios
 | Scenario | Steps | Expected |
 |----------|-------|----------|
 | Baseline | Select plant, weight=1, no modifiers | Value ~ Base flat segment value |
@@ -85,11 +85,11 @@ After edits, test:
 | Reverse quadratic | Enter large value | Weight > min threshold, matches forward when reentered |
 
 ---
-## 🛡️ Disclaimer
+##  Disclaimer
 This is an unofficial fan project. All formulas derived empirically. Balancing changes in the game may require updates here.
 
 ---
-## 🤝 Contributing
+##  Contributing
 1. Fork & clone
 2. Create a feature branch
 3. Make focused changes (keep formatting consistent)
@@ -98,11 +98,11 @@ This is an unofficial fan project. All formulas derived empirically. Balancing c
 Please include testing evidence (before/after values) for formula edits.
 
 ---
-## 📅 Project Date
+##  Project Date
 This calculator build & documentation finalized on **28 August 2025**.
 
 ---
-## 📫 Questions / Updates
+##  Questions / Updates
 If you believe values changed in‑game or find an inconsistency:
 - Open an issue / PR, OR
 - Contact us with your query (as noted on the site).
@@ -110,7 +110,7 @@ If you believe values changed in‑game or find an inconsistency:
 If you feel something should be updated, commit the change or contact us with your query.
 
 ---
-## ✅ Roadmap Ideas
+##  Roadmap Ideas
 - Automated regression test harness (sample weights → expected outputs)
 - JSON export/import of user sessions (selected plant + modifiers)
 - PWA offline support
@@ -118,7 +118,7 @@ If you feel something should be updated, commit the change or contact us with yo
 - Mutation search fuzzy matching improvements
 
 ---
-## 📝 License
+##  License
 Fanmade utility; no redistribution of proprietary game assets beyond fair-use references. (Add a formal license here if desired.)
 
 ---
