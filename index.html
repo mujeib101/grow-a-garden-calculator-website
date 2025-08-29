@@ -86,7 +86,7 @@
     </div>
 
     <div class="top-controls">
-        <button id="layoutToggleBtn" class="info-btn">Switch to side-by-side display</button></div>
+        <button id="layoutToggleBtn" class="info-btn">Switch to side-by-side display</button>
     </div>
     <div class="container layout-default" id="layoutContainer">
         <div class="left-panel" id="plantPanel">
@@ -176,9 +176,9 @@ Sort Alphabetically
                         <label for="weightSlider">Friend Boost:</label>
                         <input id="weightSlider" max="5" min="0" oninput="updateSliderLabel(); debouncedCalculateValue()" step="1" type="range" value="0" />
                         <span id="sliderValueLabel">0%</span>
-                                                 <div style="width: 100%; background: #1F1F3A; height: 18px; border-radius: 8px; margin-top: 8px;">
-                             <div id="friendBoostBar" style="height: 100%; width: 0%; background: linear-gradient(90deg,#42A5F5,#2C2C4A); border-radius: 8px; transition: width 0.3s;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="50"></div>
-                         </div>
+                        <div style="width: 100%; background: #222; height: 18px; border-radius: 8px; margin-top: 8px;">
+                            <div id="friendBoostBar" style="height: 100%; width: 0%; background: linear-gradient(90deg,#76c7ff,#2e2e2e); border-radius: 8px; transition: width 0.3s;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="50"></div>
+                        </div>
                     </div>
                 </div>
                 <div id="mutationBreakdown" style="margin-top: 10px; font-size: 18px; color: #bdfc9a;"></div>
@@ -980,7 +980,7 @@ Sort Alphabetically
                 plantButton.innerHTML = `
       <div style="display: flex; flex-direction: column; align-items: center;">
         <img src="Images/${id}.webp" alt="${id}" />
-        <span style="margin-top: 5px; font-size: 14px; color: #E0E0E0;">${id}</span>
+        <span style="margin-top: 5px; font-size: 14px; color: #ccc;">${id}</span>
       </div>
     `;
                 plantButton.onclick = () => {
@@ -1128,7 +1128,7 @@ Sort Alphabetically
                 btn.innerHTML = `
     <div style="display: flex; flex-direction: column; align-items: center;">
       <img src="images/pets/${name}.webp" style="width: 48px; height: 48px;" />
-      <span style="font-size: 12px; color: #E0E0E0;">${name}</span>
+      <span style="font-size: 12px; color: #eee;">${name}</span>
     </div>
   `;
                 btn.onclick = function() {
@@ -1385,10 +1385,10 @@ Sort Alphabetically
 
 
     <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-        <a href="/about" class="btn" style="background: #2C2C4A; border-color: #B0B0B0; color: #B0B0B0;">About</a>
-        <a href="/contact" class="btn" style="background: #2C2C4A; border-color: #B0B0B0; color: #B0B0B0;">Contact</a>
-        <a href="/privacy-policy" class="btn" style="background: #2C2C4A; border-color: #B0B0B0; color: #B0B0B0;">Privacy Policy</a>
-        <a href="/terms-of-service" class="btn" style="background: #2C2C4A; border-color: #B0B0B0; color: #B0B0B0;">Terms of Service</a>
+        <a href="/about" class="btn">About</a>
+        <a href="/contact" class="btn">Contact</a>
+        <a href="/privacy-policy" class="btn">Privacy Policy</a>
+        <a href="/terms-of-service" class="btn">Terms of Service</a>
         <div>
             Made by - mujeib101
          <!--img src="images/cat.webp" alt="Cat" style="height: 20px; vertical-align: middle; margin-right: 6px;" /><br/>
@@ -1659,14 +1659,14 @@ Sort Alphabetically
 
             const formula = `(${fruitMultiplier} × (1 ${breakdown.join(" ")} - ${modifierCount})) → (${fruitMultiplier} × ( 1 + ${sum} - ${modifierCount})) = x${finalMultiplier}`;
             document.getElementById("selectedModifiersDisplay").textContent = formula;
-            document.getElementById("selectedModifiersDisplay").style.color = "#B0B0B0";
+
 
 
             const plantName = selectedPlant ? capitalize(selectedPlant) : "???";
             const weight = document.getElementById("weight").value || "1.00";
-            const breakdownText = `${activeMods.join(" + ")} <span style="color:#E0E0E0;">${plantName}</span> <span style="color:#E0E0E0;">${weight}kg</span> would cost around:`;
+            const breakdownText = `${activeMods.join(" + ")} <span style="color:#ffffff;">${plantName}</span> <span style="color:white;">${weight}kg</span> would cost around:`;
             document.getElementById("mutationBreakdown").innerHTML = breakdownText;
-            document.getElementById("mutationBreakdown").style.color = "#B0B0B0";
+
         }
     </script>
     <script>
